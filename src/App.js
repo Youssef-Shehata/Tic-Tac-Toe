@@ -1,22 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import PopUp from './Components/PopUp';
 
 
-
-
-const PopUp = ({ won, x, hanldeClick }) => {
-  const classname = won ? "won-popup" : "draw-popup"
-
-  const winner = x ? 'X' : 'O';
-  const state = won ? `${winner} Won` : 'DRAW'
-
-  return (
-    <div className={classname}>
-      <span>{state}</span>
-      <button onClick={hanldeClick}>Play Again</button>
-    </div>
-  )
-}
 const defaultGrid = [
   ['', '', ''],
   ['', '', ''],
@@ -42,63 +28,73 @@ const calcWin = (grid, i, j) => {
     if (grid[0][0] === grid[2][2] && grid[2][2] === center) return true
   }
 }
+const checkDraw = (grid) => {
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (grid[i][j] === '') {
+        return false; // Return false if there is still room to play
+      }
+    }
+  }
+
+  return true; // Return tru if no availabel spots
+}
 
 function App() {
+  const [playerX, setPlayerX] = useState(true)
+  const [draw, setDraw] = useState(false)
+  const [won, setWon] = useState(false)
+  const [locked, setLocked] = useState(false)
+
   const [grid, setGrid] = useState([
     ['', '', ''],
     ['', '', ''],
     ['', '', '']
   ]);
-  const [playerX, setPlayerX] = useState(true)
-  const [draw, setDraw] = useState(false)
-  const [won, setWon] = useState(false)
 
 
   const handlePlayAgain = () => {
+    // reset everything 
     setGrid([
       ['', '', ''],
       ['', '', ''],
       ['', '', '']
     ])
-    console.log(defaultGrid)
     setPlayerX(true)
     setDraw(false)
     setWon(false)
+    setLocked(false)
   }
+  const handleClose = () => {
+    setDraw(false)
+    setWon(false)
 
+  }
 
   const handlePlay = (rowIndex, colIndex) => {
     if (grid[rowIndex][colIndex]) return
+    if (locked) return
     const newGrid = [...grid];
     const play = playerX ? 'X' : 'O'
     newGrid[rowIndex][colIndex] = play
 
     setGrid(newGrid)
-
-    if (calcWin(newGrid, rowIndex, colIndex)) setWon(true)
+    // check if won 
+    if (calcWin(newGrid, rowIndex, colIndex)) {
+      setWon(true)
+      setLocked(true)
+    }
+    // next player turn 
     setPlayerX((prevplayer) => !prevplayer)
   }
 
 
 
   useEffect(() => {
-    const checkDraw = () => {
-      for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-          if (grid[i][j] === '') {
-            return false; // Return false if there is still room to play
-          }
-        }
-      }
-
-      return true; // Return tru if no availabel spots
+    if (checkDraw(grid) && !won) {
+      setDraw(true)
+      setLocked(true)
     }
-    setTimeout(() => {
-      let draw = checkDraw()
-      if (draw && !won) {
-        setDraw(true)
-      }
-    }, 120)
 
 
   }, [grid])
@@ -110,9 +106,9 @@ function App() {
 
       <div className='grid'>
         {won ? (
-          <PopUp won={won} x={!playerX} hanldeClick={handlePlayAgain} />
+          <PopUp won={won} x={!playerX} handlePlayAgain={handlePlayAgain} handleClose={handleClose} />
         ) : draw ? (
-          <PopUp won={won} x={!playerX} hanldeClick={handlePlayAgain} />
+          <PopUp won={won} x={!playerX} handlePlayAgain={handlePlayAgain} handleClose={handleClose} />
         ) : null}
 
 

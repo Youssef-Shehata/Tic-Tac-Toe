@@ -5,6 +5,17 @@
   height: 100%;
 }
 
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  min-width: fit-content;
+  min-height: fit-content;
+}
+
 .grid {
   width: 61vmin;
   height: 68vmin;
@@ -14,22 +25,81 @@
   align-content: center;
   justify-content: center;
   align-items: center;
-  background: aquamarine;
+  background: linear-gradient(6deg, #134f4cbf, transparent);
   top: 17vh;
   left: 34vw;
+  box-shadow: 0px 0px 20px 20px #0e272461;
+  border-radius: 20px;
+  grid-column-gap: 1px;
+  min-width: 465px;
+  min-height: 531px;
+
+
 }
 
 .cell {
-  background-color: blueviolet;
-  margin: 1px;
-  border: 1px solid black;
+  background: repeating-linear-gradient(224deg, #0000003b, #a39c9c59 97px);
+  margin: 2px;
+  border: 1px solid #ffffff9e;
   border-radius: 3px;
-  width: 124px;
-  height: 124px;
+  width: 142px;
+  height: 162px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 76px;
+  font-size: 83px;
+  -webkit-user-select: none;
   user-select: none;
   cursor: pointer;
+  border-radius: 8px;
+  min-width: fit-content;
+  min-height: max-content;
+  max-width: 148px;
+  max-height: 163px;
+}
+
+.popup {
+  display: flex;
+  position: absolute;
+  background-color: #112323a1;
+  gap: 10px;
+  flex-direction: column;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  min-height: 202px;
+  height: 24vh;
+  width: 39vh;
+  font-size: 62px;
+  border: 1px solid white;
+  border-radius: 15px;
+  box-shadow: 0 0 20px 3px #ffffff5e;
+  color: white;
+  padding: 15px;
+  font-weight: bold;
+  justify-content: space-between;
+}
+
+.butt-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding-inline: 9px;
+}
+
+.butt {
+  background: linear-gradient(45deg, black, #ffffff36);
+  border: none;
+  border-radius: 6px;
+  min-width: 71px;
+  min-height: fit-content;
+  font-size: 25px;
+  font-weight: bold;
+  COLOR: white;
+  padding: 6px;
+  padding-inline: 28px;
+}
+
+.butt:hover {
+  background: linear-gradient(45deg, rgb(15, 48, 80), #91dcffd3);
+
 }
