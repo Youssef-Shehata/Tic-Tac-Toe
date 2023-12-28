@@ -16,7 +16,42 @@ select {
   min-height: fit-content;
 }
 
+.header {
+  background: linear-gradient(179deg, #051d20, #2f4f4f00);
+  height: 14vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 72px;
+  font-weight: bold;
+  font-family: system-ui;
+}
+
+.char {
+  font-size: 74px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.active {
+  box-shadow: 0px 0px 20px 20px #06232759;
+  background: linear-gradient(45deg, #102b2e, transparent);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+
 .grid {
+
   width: 61vmin;
   height: 68vmin;
   display: flex;
@@ -25,7 +60,7 @@ select {
   align-content: center;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(6deg, #134f4cbf, transparent);
+  /* background: linear-gradient(6deg, #134f4cbf, transparent); */
   top: 17vh;
   left: 34vw;
   box-shadow: 0px 0px 20px 20px #0e272461;
@@ -38,24 +73,28 @@ select {
 }
 
 .cell {
-  background: repeating-linear-gradient(224deg, #0000003b, #a39c9c59 97px);
+  background: repeating-linear-gradient(183deg, #1d1d1d3b, #a39c9c59);
   margin: 2px;
-  border: 1px solid #ffffff9e;
+  border: 0px solid #0000009e;
   border-radius: 3px;
   width: 142px;
   height: 162px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 83px;
+  font-size: 96px;
   -webkit-user-select: none;
   user-select: none;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 12px;
+  min-width: -moz-fit-content;
   min-width: fit-content;
   min-height: max-content;
   max-width: 148px;
   max-height: 163px;
+  font-family: sans-serif;
+  FONT-WEIGHT: bold;
+  color: #031416;
 }
 
 .popup {

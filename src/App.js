@@ -16,18 +16,26 @@ const calcWin = (grid, i, j) => {
   const current = grid[i][j];
   if (current === '') return false
 
+
+  // check for 3 repeating values in each row or column
   if (current === grid[i][(j + 1) % 3] &&
     current === grid[i][(j + 2) % 3] &&
     current === grid[i][(j + 3) % 3]) return true
   if (current === grid[(i + 1) % 3][j] &&
     current === grid[(i + 2) % 3][j] &&
     current === grid[(i + 3) % 3][j]) return true
+
+  // check for if there is a value in the centere and if so check the corners for 3 repeating valiues 
+
   const center = grid[1][1]
   if (center) {
     if (grid[0][2] === grid[2][0] && grid[2][0] === center) return true
     if (grid[0][0] === grid[2][2] && grid[2][2] === center) return true
   }
 }
+
+
+
 const checkDraw = (grid) => {
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
@@ -41,16 +49,22 @@ const checkDraw = (grid) => {
 }
 
 function App() {
-  const [playerX, setPlayerX] = useState(true)
+  const [playerX, setPlayerX] = useState(false)
   const [draw, setDraw] = useState(false)
   const [won, setWon] = useState(false)
   const [locked, setLocked] = useState(false)
+  const [playing, setPlaying] = useState(false)
+
 
   const [grid, setGrid] = useState([
     ['', '', ''],
     ['', '', ''],
     ['', '', '']
   ]);
+
+
+
+
 
 
   const handlePlayAgain = () => {
@@ -65,15 +79,17 @@ function App() {
     setWon(false)
     setLocked(false)
   }
+
   const handleClose = () => {
     setDraw(false)
     setWon(false)
-
   }
 
   const handlePlay = (rowIndex, colIndex) => {
     if (grid[rowIndex][colIndex]) return
+
     if (locked) return
+    setPlaying(true)
     const newGrid = [...grid];
     const play = playerX ? 'X' : 'O'
     newGrid[rowIndex][colIndex] = play
@@ -84,26 +100,35 @@ function App() {
       setWon(true)
       setLocked(true)
     }
-    // next player turn 
-    setPlayerX((prevplayer) => !prevplayer)
-  }
 
 
 
-  useEffect(() => {
+    // check if draw  
     if (checkDraw(grid) && !won) {
       setDraw(true)
       setLocked(true)
     }
+    // next player turn 
+    setPlayerX((prevplayer) => !prevplayer)
+  }
 
+  const handleSwitch = () => {
+    if (playing) return
 
-  }, [grid])
+    setPlayerX((prevplayer) => !prevplayer)
 
+  }
 
 
   return (
     <div className="App">
 
+      <div className='header'>
+        <span className={"char" + (playerX ? ' active' : '')} onClick={handleSwitch}>X</span>/
+        <span className={"char" + (!playerX ? ' active' : '')} onClick={handleSwitch}>O</span>
+
+
+      </div>
       <div className='grid'>
         {won ? (
           <PopUp won={won} x={!playerX} handlePlayAgain={handlePlayAgain} handleClose={handleClose} />
