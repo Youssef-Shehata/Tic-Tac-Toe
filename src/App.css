@@ -123,6 +123,7 @@ select {
   padding: 15px;
   font-weight: bold;
   justify-content: space-between;
+  user-select: none;
 }
 
 .butt-container {
@@ -133,19 +134,20 @@ select {
 }
 
 .butt {
-  background: linear-gradient(45deg, black, #ffffff36);
-  border: none;
+  background-color: #004550;
   border-radius: 6px;
   min-width: 71px;
+  min-height: -moz-fit-content;
   min-height: fit-content;
   font-size: 25px;
   font-weight: bold;
   COLOR: white;
   padding: 6px;
-  padding-inline: 28px;
+  padding-inline: 26px;
+  cursor: pointer;
+  border: none;
 }
 
 .butt:hover {
-  background: linear-gradient(45deg, rgb(15, 48, 80), #91dcffd3);
-
+  background: linear-gradient(214deg, rgb(15, 48, 80), #91dcffd3);
 }
