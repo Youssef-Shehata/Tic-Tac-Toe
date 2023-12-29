@@ -23,15 +23,16 @@ select {
 }
 
 .header {
-  background: linear-gradient(179deg, #2c5e65, #ffffff00);
-  height: 19vh;
+  background: linear-gradient(180deg, #005f6b, #ffffff00);
+  height: 23vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 72px;
   font-weight: bold;
   font-family: system-ui;
-  margin-bottom: -125px;
+  margin-bottom: -146px;
+  -webkit-user-select: none;
   user-select: none;
 
 }
@@ -106,7 +107,7 @@ select {
 .popup {
   display: flex;
   position: absolute;
-  background-color: #112323a1;
+  background-color: #112323f7;
   gap: 10px;
   flex-direction: column;
   min-width: -moz-fit-content;

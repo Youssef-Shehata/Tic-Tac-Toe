@@ -110,9 +110,11 @@ function App() {
       setDraw(true)
       setLocked(true)
     }
-    // next player turn 
-    // let move = findBestMove(grid)
-    // console.log(move)
+
+
+
+
+
     setPlayerX((prevplayer) => !prevplayer)
   }
 
