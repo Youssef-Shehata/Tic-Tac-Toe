@@ -1,8 +1,14 @@
 .App {
   text-align: center;
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 
 input,
@@ -17,14 +23,17 @@ select {
 }
 
 .header {
-  background: linear-gradient(179deg, #051d20, #2f4f4f00);
-  height: 14vh;
+  background: linear-gradient(179deg, #2c5e65, #ffffff00);
+  height: 19vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 72px;
   font-weight: bold;
   font-family: system-ui;
+  margin-bottom: -125px;
+  user-select: none;
+
 }
 
 .char {
@@ -34,38 +43,35 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
-  user-select: none;
   cursor: pointer;
+  z-index: 2;
+
 }
 
 .active {
-  box-shadow: 0px 0px 20px 20px #06232759;
-  background: linear-gradient(45deg, #102b2e, transparent);
-  border-radius: 50%;
+  background: radial-gradient(#41b0c03b, #91dcff00);
+  border-radius: 28%;
   display: flex;
   justify-content: center;
   align-items: center;
-  user-select: none;
+
   cursor: pointer;
+  color: white;
+
 }
 
 
 .grid {
-
+  margin-top: 1px;
   width: 61vmin;
   height: 68vmin;
   display: flex;
-  position: absolute;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-content: center;
   justify-content: center;
   align-items: center;
-  /* background: linear-gradient(6deg, #134f4cbf, transparent); */
-  top: 17vh;
-  left: 34vw;
-  box-shadow: 0px 0px 20px 20px #0e272461;
   border-radius: 20px;
-  grid-column-gap: 1px;
+  grid-column-gap: 5px;
   min-width: 465px;
   min-height: 531px;
 
@@ -73,12 +79,12 @@ select {
 }
 
 .cell {
-  background: repeating-linear-gradient(183deg, #1d1d1d3b, #a39c9c59);
-  margin: 2px;
+  background-color: #0d3137;
+  margin-bottom: 5px;
   border: 0px solid #0000009e;
   border-radius: 3px;
-  width: 142px;
-  height: 162px;
+  width: 166px;
+  height: 187px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,11 +96,11 @@ select {
   min-width: -moz-fit-content;
   min-width: fit-content;
   min-height: max-content;
-  max-width: 148px;
-  max-height: 163px;
+  max-width: 167px;
+  max-height: 215px;
   font-family: sans-serif;
   FONT-WEIGHT: bold;
-  color: #031416;
+  color: #ffffff;
 }
 
 .popup {

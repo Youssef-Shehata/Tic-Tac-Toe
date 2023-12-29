@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import PopUp from './Components/PopUp';
+import findBestMove from './MinMax';
 
 
 const defaultGrid = [
@@ -78,6 +79,7 @@ function App() {
     setDraw(false)
     setWon(false)
     setLocked(false)
+    setPlaying(false)
   }
 
   const handleClose = () => {
@@ -109,6 +111,8 @@ function App() {
       setLocked(true)
     }
     // next player turn 
+    // let move = findBestMove(grid)
+    // console.log(move)
     setPlayerX((prevplayer) => !prevplayer)
   }
 
@@ -121,33 +125,36 @@ function App() {
 
 
   return (
-    <div className="App">
-
+    <div>
       <div className='header'>
         <span className={"char" + (playerX ? ' active' : '')} onClick={handleSwitch}>X</span>/
         <span className={"char" + (!playerX ? ' active' : '')} onClick={handleSwitch}>O</span>
 
 
       </div>
-      <div className='grid'>
-        {won ? (
-          <PopUp won={won} x={!playerX} handlePlayAgain={handlePlayAgain} handleClose={handleClose} />
-        ) : draw ? (
-          <PopUp won={won} x={!playerX} handlePlayAgain={handlePlayAgain} handleClose={handleClose} />
-        ) : null}
+      <div className="App">
 
 
-        {grid && grid.map((row, rowIndex) => (
-          <div key={rowIndex} className='row'>
-            {row && row.map((cell, colIndex) => (
-              <div key={colIndex} className='cell' onClick={() => handlePlay(rowIndex, colIndex)}>
-                {cell ? cell : " "}
+        <div className='grid'>
+          {won ? (
+            <PopUp won={won} x={!playerX} handlePlayAgain={handlePlayAgain} handleClose={handleClose} />
+          ) : draw ? (
+            <PopUp won={won} x={!playerX} handlePlayAgain={handlePlayAgain} handleClose={handleClose} />
+          ) : null}
 
-              </div>
 
-            ))}
-          </div>
-        ))}
+          {grid && grid.map((row, rowIndex) => (
+            <div key={rowIndex} className='row'>
+              {row && row.map((cell, colIndex) => (
+                <div key={colIndex} className='cell' onClick={() => handlePlay(rowIndex, colIndex)}>
+                  {cell ? cell : " "}
+
+                </div>
+
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
